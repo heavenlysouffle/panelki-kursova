@@ -164,17 +164,17 @@ $_SESSION['cart_cost'] = $_SESSION['cart_cost'] ?? 0;
                             <span class="validity"></span>
                         </div>
                         <div class="form-element" style="width: 100%; padding-left: 25px;">
-                            <img src="img/card_icon.png" alt="card icon">
+                            <img src="img/card_icon.png" alt="">
                             <input type="number" name="card" placeholder="7777 7777 7777 7777" />
                             <span class="validity"></span>
                         </div>
                         <div class="form-element" style="padding-left: 25px;">
-                            <img src="img/date_icon.png" alt="password icon">
+                            <img src="img/date_icon.png" alt="">
                             <input type="text" pattern="[0-9]{2}/[2-3]{1}[0-9]{1}" name="date" placeholder="06 / 24" />
                             <span class="validity"></span>
                         </div>
                         <div class="form-element" style="padding-left: 25px;">
-                            <img src="img/cvc_icon.png" alt="password icon">
+                            <img src="img/cvc_icon.png" alt="">
                             <input type="password" pattern="[0-9]{3}" name="cvc" placeholder="CVC" />
                             <span class="validity"></span>
                         </div>
