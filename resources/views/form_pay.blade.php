@@ -189,11 +189,17 @@ $_SESSION['cart_cost'] = $_SESSION['cart_cost'] ?? 0;
                 </form>
             </div>
         </div>
-        @if($errors)
-            @foreach($errors as $error)
-                <h4>{{ $error }}</h4>
-            @endforeach
-        @endif
+        <div class="error-message-container">
+            <div>
+                @if($errors)
+                    @foreach($errors as $error)
+                        <div class="error-message">
+                            ! {{ $error }}
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
         <div class="row row-3"></div>
         <div class="row row-4"></div>
     </section>
