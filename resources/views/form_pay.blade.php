@@ -3,11 +3,11 @@
 if (!$errors) {
     session_start();
 }
-$_SESSION['cart_cost'] = $_SESSION['cart_cost'] ?? 0;
+$cartClass = $_GET['cartClass'] ?? 'cart'
 
 ?>
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ua">
 <head>
     <meta charset="UTF-8">
@@ -20,13 +20,13 @@ $_SESSION['cart_cost'] = $_SESSION['cart_cost'] ?? 0;
 <body style="position: relative">
 
 <!-- Cart start -->
-<div class="cart" id="cart">
+<div class={{ $cartClass}} id="cart">
     <button onclick="myFunction()" class="cart-btn"></button>
     <div class="cart_bg">
         <div class="cart-title"><h3 >Кошик</h3></div>
         <ul>
             @foreach($panels as $panelItem)
-                @if(isset($_SESSION['order_array']))
+                @if(isset($_SESSION['order_array']) && $_SESSION['order_array'])
                     @foreach($_SESSION['order_array'] as $item)
                         @if($panelItem->name == $item['name'])
                             <li>
@@ -69,7 +69,7 @@ $_SESSION['cart_cost'] = $_SESSION['cart_cost'] ?? 0;
                 @endif
             @endforeach
         </ul>
-        @if($_SESSION['cart_cost'])
+        @if(isset($_SESSION['cart_cost']))
             <div class="clear-cart-container">
                 <a href="">
                     <form action="{{ route('cart.delete') }}" method="POST" enctype="multipart/form-data">
@@ -89,9 +89,13 @@ $_SESSION['cart_cost'] = $_SESSION['cart_cost'] ?? 0;
             <div class="proceed_wrapper">
                 <div class="proceed-text-price">
                     <div class="proceed-text">Разом:</div>
-                    <div class="final-price">— {{ $_SESSION['cart_cost'] }} ₴</div>
+                    @if (isset($_SESSION['cart_cost']))
+                        <div class="final-price">— {{ $_SESSION['cart_cost'] }} ₴</div>
+                    @else
+                        <div class="final-price">— 0 ₴</div>
+                    @endif
                 </div>
-                @if ($_SESSION['cart_cost'])
+                @if (isset($_SESSION['order_array']) && $_SESSION['order_array'])
                     <a href="/pay">
                         <button class="proceed-button">Продовжити</button>
                     </a>
