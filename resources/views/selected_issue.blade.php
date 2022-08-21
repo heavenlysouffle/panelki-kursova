@@ -106,7 +106,6 @@ $cartClass = $_GET['cartClass'] ?? 'cart'
 </div>
 <!-- Cart end -->
 
-
 <!-- Header start -->
 <header class="header">
     <div class="wrapper">
@@ -152,7 +151,7 @@ $cartClass = $_GET['cartClass'] ?? 'cart'
         <div class="selected-issue-content">
             <div class="issue-pic-background">
                 <div class="issue-pic">
-                    <img src="/img/issues_issue_{{$panel->name}}.jpg" alt="" class="issue-main-picture">
+                    <img src="/img/selected_{{$panel->name}}.jpeg" alt="" class="issue-main-picture">
                     <div class="selected-issue-wrapper">
                         <div class="issue-details-text">
                             Тверда палітурка | 20 ілюстрацій
