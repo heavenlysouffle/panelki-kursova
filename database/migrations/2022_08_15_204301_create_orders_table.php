@@ -22,9 +22,9 @@ return new class extends Migration
                 ->on('panels')
                 ->onDelete('cascade');
             $table->integer('price');
-            $table->string('first_name')->nullable(true);
-            $table->string('second_name')->nullable(true);
-            $table->string('phone')->nullable(false);
+            $table->string('first_name');
+            $table->string('second_name');
+            $table->string('phone');
             $table->timestamps();
         });
     }
