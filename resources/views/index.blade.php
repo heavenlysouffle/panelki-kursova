@@ -2,7 +2,7 @@
 
 $message = $_COOKIE['message'] ?? null;
 session_start();
-$_SESSION['cart_cost'] = $_SESSION['cart_cost'] ?? 0;
+//$_SESSION['cart_cost'] = $_SESSION['cart_cost'] ?? 0;
 
 ?>
 

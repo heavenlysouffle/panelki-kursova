@@ -1,6 +1,8 @@
 <?php
 
-if (!isset($errors)) session_start();
+if (!$errors) {
+    session_start();
+}
 $_SESSION['cart_cost'] = $_SESSION['cart_cost'] ?? 0;
 
 ?>

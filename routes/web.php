@@ -29,7 +29,7 @@ Route::get('/events', function () {
 Route::get('/pay', function () {
     $panel = new Panel();
     $catalog = $panel->all();
-    return view('form_pay', ['panels'=>$catalog]);
+    return view('form_pay', ['errors' => null ,'panels'=>$catalog]);
 })->name('pay');
 
 Route::post('/pay/check', [PayController::class, 'pay_postValidator'])->name('pay.order');
