@@ -148,7 +148,7 @@ $_SESSION['cart_cost'] = $_SESSION['cart_cost'] ?? 0;
         <div class="selected-issue-content">
             <div class="issue-pic-background">
                 <div class="issue-pic">
-                    <img src="/img/selected-issue_slide.jpg" alt="" class="issue-main-picture">
+                    <img src="/img/issues_issue_{{$panel->name}}.jpg" alt="" class="issue-main-picture">
                     <div class="selected-issue-wrapper">
                         <div class="issue-details-text">
                             Тверда палітурка | 20 ілюстрацій

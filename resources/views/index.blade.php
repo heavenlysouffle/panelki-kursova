@@ -20,87 +20,91 @@ $_SESSION['cart_cost'] = $_SESSION['cart_cost'] ?? 0;
 <body>
     <!-- Cart start -->
     <div class="cart" id="cart">
-    <button onclick="myFunction()" class="cart-btn"></button>
-    <div class="cart_bg">
-        <div class="cart-title"><h3 >Кошик</h3></div>
-        <ul>
-            @foreach($panels as $panelItem)
-                @if(isset($_SESSION['order_array']))
-                    @foreach($_SESSION['order_array'] as $item)
-                        @if($panelItem->name == $item['name'])
-                            <li>
-                                <div class="magazine">
-                                    <div class="cover">
-                                        <img class="cover-img" src="/img/issues_issue_{{ $item['name'] }}.jpg" alt="">
-                                    </div>
-                                    <div class="cart-counter-price">
-                                        <div class="cart-counter">
-                                            <ul>
-                                                <li>
-                                                    <form action="{{ route('cart.add') }}" method="POST" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" value="{{ $panelItem->name }}" name="name">
-                                                        <input type="hidden" value="{{ $panelItem->price }}" name="price">
-                                                        <input type="hidden" value="index" name="pageName">
-                                                        <button>+ </button>
-                                                    </form>
-                                                </li>
-                                                <li>
-                                                    &nbsp;&nbsp;{{ $item['quantity'] }}
-                                                </li>
-                                                <li>
-                                                    <form action="{{ route('cart.remove') }}" method="POST" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <input type="hidden" value="{{ $panelItem->name }}" name="name">
-                                                        <input type="hidden" value="{{ $panelItem->price }}" name="price">
-                                                        <input type="hidden" value="index" name="pageName">
-                                                        <button>-</button>
-                                                    </form>
-                                                </li>
-                                            </ul>
+        <button onclick="myFunction()" class="cart-btn"></button>
+        <div class="cart_bg">
+            <div class="cart-title"><h3 >Кошик</h3></div>
+            <ul>
+                @foreach($panels as $panelItem)
+                    @if(isset($_SESSION['order_array']) && $_SESSION['order_array'])
+                        @foreach($_SESSION['order_array'] as $item)
+                            @if($panelItem->name == $item['name'])
+                                <li>
+                                    <div class="magazine">
+                                        <div class="cover">
+                                            <img class="cover-img" src="/img/issues_issue_{{ $item['name'] }}.jpg" alt="">
                                         </div>
-                                        <div class="price">— {{$panelItem->price}} ₴</div>
+                                        <div class="cart-counter-price">
+                                            <div class="cart-counter">
+                                                <ul>
+                                                    <li>
+                                                        <form action="{{ route('cart.add') }}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $panelItem->name }}" name="name">
+                                                            <input type="hidden" value="{{ $panelItem->price }}" name="price">
+                                                            <input type="hidden" value="index" name="pageName">
+                                                            <button>+ </button>
+                                                        </form>
+                                                    </li>
+                                                    <li>
+                                                        &nbsp;&nbsp;{{ $item['quantity'] }}
+                                                    </li>
+                                                    <li>
+                                                        <form action="{{ route('cart.remove') }}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $panelItem->name }}" name="name">
+                                                            <input type="hidden" value="{{ $panelItem->price }}" name="price">
+                                                            <input type="hidden" value="index" name="pageName">
+                                                            <button>-</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="price">— {{$panelItem->price}} ₴</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        @endif
-                    @endforeach
-                @endif
-            @endforeach
-        </ul>
-        @if($_SESSION['cart_cost'])
-            <div class="clear-cart-container">
-                <a href="">
-                    <form action="{{ route('cart.delete') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" value="index" name="pageName">
-                        <button class="clear-cart">Очистити кошик</button>
-                    </form>
-                </a>
-            </div>
-        @else
-            <div class="fill-cart">
-                <p>Упс! Тут поки нічого :(</p>
-                <a href="/issues"><button class="clear-cart">Заповнити кошик</button></a>
-            </div>
-        @endif
-        <div class="proceed">
-            <div class="proceed_wrapper">
-                <div class="proceed-text-price">
-                    <div class="proceed-text">Разом:</div>
-                    <div class="final-price">— {{ $_SESSION['cart_cost'] }} ₴</div>
+                                </li>
+                            @endif
+                        @endforeach
+                    @endif
+                @endforeach
+            </ul>
+            @if(isset($_SESSION['cart_cost']))
+                <div class="clear-cart-container">
+                    <a href="">
+                        <form action="{{ route('cart.delete') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" value="index" name="pageName">
+                            <button class="clear-cart">Очистити кошик</button>
+                        </form>
+                    </a>
                 </div>
-                @if ($_SESSION['cart_cost'])
-                <a href="/pay">
-                    <button class="proceed-button">Продовжити</button>
-                </a>
-                @else
-                    <button class="proceed-button" style="cursor: not-allowed;">Продовжити</button>
-                @endif
+            @else
+                <div class="fill-cart">
+                    <p>Упс! Тут поки нічого :(</p>
+                    <a href="/issues"><button class="clear-cart">Заповнити кошик</button></a>
+                </div>
+            @endif
+            <div class="proceed">
+                <div class="proceed_wrapper">
+                    <div class="proceed-text-price">
+                        <div class="proceed-text">Разом:</div>
+                        @if (isset($_SESSION['cart_cost']))
+                            <div class="final-price">— {{ $_SESSION['cart_cost'] }} ₴</div>
+                        @else
+                            <div class="final-price">— 0 ₴</div>
+                        @endif
+                    </div>
+                    @if (isset($_SESSION['order_array']) && $_SESSION['order_array'])
+                        <a href="/pay">
+                            <button class="proceed-button">Продовжити</button>
+                        </a>
+                    @else
+                        <button class="proceed-button" style="cursor: not-allowed;">Продовжити</button>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
-</div>
     <!-- Cart end -->
 
     <!-- Header start -->
