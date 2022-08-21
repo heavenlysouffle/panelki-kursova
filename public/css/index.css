@@ -1174,6 +1174,22 @@ p.action-button-text {
   margin: 50px 16px 268px 80px;
 }
 /* Action block styles end */
+.error-message-container {
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  display: flex;
+  justify-content: center;
+  z-index: 4;
+}
+.error-message {
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  background-color: #F1D015;
+  border-radius: 15px;
+  font-size: 18px;
+  line-height: 22px;
+}
 /* Footer styles start */
 .footer {
   width: 100%;

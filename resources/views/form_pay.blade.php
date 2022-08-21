@@ -200,7 +200,7 @@ $cartClass = $_GET['cartClass'] ?? 'cart'
                 @if($errors)
                     @foreach($errors as $error)
                         <div class="error-message">
-                            ! {{ $error }}
+                            (!) {{ $error }}
                         </div>
                     @endforeach
                 @endif

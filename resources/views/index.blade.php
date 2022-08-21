@@ -17,7 +17,7 @@ $cartClass = $_GET['cartClass'] ?? 'cart'
     <script src="https://kit.fontawesome.com/b0f29e9bfe.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/index.css">
 </head>
-<body>
+<body style="position: relative;">
 <!-- Cart start -->
 <div class={{ $cartClass}} id="cart">
     <button onclick="myFunction()" class="cart-btn"></button>
@@ -150,10 +150,14 @@ $cartClass = $_GET['cartClass'] ?? 'cart'
 <main class="main">
     <!-- Attention block start -->
     <section class="attention">
-        @if($message)
-            <h2 style="background-color: lightgreen; text-align: center" >{{$message}}</h2>
-            <?php unset($_COOKIE['message']); setcookie('message', null, -1, '/'); ?>
-        @endif
+        <div class="error-message-container">
+            <div>
+                @if($message)
+                    <div class="error-message">{{$message}}</div>
+                    <?php unset($_COOKIE['message']); setcookie('message', null, -1, '/'); ?>
+                @endif
+            </div>
+        </div>
         <div class="attention-wrapper">
             <div class="attention-text-box">
                 <h1 class="attention-heading">Про близьке, трохи журливе та з дитинства.</h1>

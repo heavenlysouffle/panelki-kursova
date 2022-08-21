@@ -28,30 +28,26 @@ class PayController extends Controller {
         $panels = $panelObj->all();
 
         if (count($card_arr) != 16) {
-            $errors[] = 'неправильно заповнений номер карти';
+            $errors[] = 'Неправильно заповнений номер карти';
         }
 
         if (!$first_name) {
-            $errors[] = 'неправильно заповнене поле імені';
+            $errors[] = 'Неправильно заповнене поле імені';
         }
 
         if (!$second_name) {
-            $errors[] = 'неправильно заповнене поле фамілії';
+            $errors[] = 'Неправильно заповнене поле фамілії';
         }
 
         foreach ($first_name_arr as $item) {
-            if (is_numeric($item) && !in_array('неправильно заповнене поле імені', $errors)) {
-                $errors[] = 'неправильно заповнене поле імені';
-                error_log(gettype($item));
-                error_log($item);
+            if (is_numeric($item) && !in_array('Неправильно заповнене поле імені', $errors)) {
+                $errors[] = 'Неправильно заповнене поле імені';
             }
         }
 
         foreach ($second_name_arr as $item) {
-            if (is_numeric($item) && !in_array('неправильно заповнене поле фамілії', $errors)) {
-                $errors[] = 'неправильно заповнене поле фамілії';
-                error_log(gettype($item));
-                error_log($item);
+            if (is_numeric($item) && !in_array('Неправильно заповнене поле фамілії', $errors)) {
+                $errors[] = 'Неправильно заповнене поле фамілії';
             }
         }
 
